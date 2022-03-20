@@ -10,7 +10,7 @@ const client = redis.createClient({
   url: config.DATABASE_URL,
   socket: {
     rejectUnauthorized: false
-  }
+  },
 });
 
 (async () => {
