@@ -6,11 +6,16 @@ const redis = require('redis');
 
 const logger = Logger.createLogger({ label: 'LANNISTER' });
 
-const client = redis.createClient({ url: config.DATABASE_URL });
+const client = redis.createClient({
+  url: config.DATABASE_URL,
+  socket: {
+    rejectUnauthorized: false
+  }
+});
 
-// (async () => {
-//   await client.connect();
-// })();
+(async () => {
+  await client.connect();
+})();
 
 client.on('connect', () => {
   logger.info('Redis connected successfully');
