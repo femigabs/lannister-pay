@@ -3,49 +3,13 @@ import constants from '../constants';
 import DBError from '../error/db.error';
 
 const { serverError } = genericError;
-const { FAIL, SUCCESS, SUCCESS_RESPONSE } = constants;
+const { FAIL } = constants;
 
 /**
  *Contains Helper methods
  * @class Helper
  */
 class Helper {
-  /**
-   * Creates DB Error object and logs it with respective error message and status.
-   * @static
-   * @param { String | Object } data - The data.
-   * @memberof Helper
-   * @returns { Object } - It returns an Error Object.
-   */
-  static makeError({ error, status }) {
-    const dbError = new DBError({
-      status,
-      message: error.message
-    });
-    Helper.moduleErrLogMessager(dbError);
-    return dbError;
-  }
-
-  /**
-   * Generates a JSON response for success scenarios.
-   * @static
-   * @param {Response} res - Response object.
-   * @param {object} options - An object containing response properties.
-   * @param {object} options.data - The payload.
-   * @param {string} options.message -  HTTP Status code.
-   * @param {number} options.code -  HTTP Status code.
-   * @memberof Helpers
-   * @returns {JSON} - A JSON success response.
-   */
-  static successResponse(
-    res,
-    { data, code = 200 }
-  ) {
-    return res.status(code).json({
-      data
-    });
-  }
-
   /**
    * Generates a JSON response for failure scenarios.
    * @static
@@ -66,17 +30,6 @@ class Helper {
       message: aggregateError.message,
       errors: aggregateError.errors
     });
-  }
-
-  /**
-   * Generates log for module errors.
-   * @static
-   * @param {object} error - The module error object.
-   * @memberof Helpers
-   * @returns { Null } -  It returns null.
-   */
-  static moduleErrLogMessager(error) {
-    return logger.error(`${error.status} - ${error.name} - ${error.message}`);
   }
 
   /**

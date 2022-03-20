@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node -r esm .",
     "dev": "nodemon -r esm .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit --coverage",
+    "watch-test": "jest --watchAll --detectOpenHandles --forceExit --coverage --testTimeout=30000"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,14 @@
     "esm": "^3.2.25",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
-    "mongoose": "^6.2.6",
+    "jest": "^27.5.1",
+    "jest-esm-transformer": "^1.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "nyc": "^15.1.0",
+    "redis": "^4.0.4",
+    "redis-mock": "^0.56.3",
+    "supertest": "^6.2.2",
     "winston": "^3.6.0"
   }
 }

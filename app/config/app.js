@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-vars */
 import morgan from 'morgan';
 import { json, urlencoded } from 'express';
@@ -7,7 +8,7 @@ import apiV1Routes from '../routes/v1';
 import config from './env';
 import { Helper, genericErrors, constants } from '../utils';
 
-const { errorResponse, successResponse } = Helper;
+const { errorResponse } = Helper;
 const { notFoundApi } = genericErrors;
 const {
   WELCOME,
@@ -31,16 +32,18 @@ const appConfig = (app) => {
     next();
   });
 
-  app.get('/', (req, res) => successResponse(res, { message: WELCOME }));
+  app.get('/', (req, res) => res.json({ message: WELCOME }));
   app.use(v1, apiV1Routes);
   app.use((req, res, next) => {
     next(notFoundApi);
   });
   app.use((err, req, res, next) => errorResponse(req, res, err));
   const port = config.PORT || 3100;
-  app.listen(port, () => {
-    logger.info(`${LANNISTER_RUNNING} ${port}`);
-  });
+  if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+      logger.info(`${LANNISTER_RUNNING} ${port}`);
+    });
+  }
 };
 
 export default appConfig;
