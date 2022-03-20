@@ -108,7 +108,6 @@ class Service {
     const { Type, Country } = PaymentEntity;
     const locale = (CurrencyCountry === Country) ? 'LOCL' : 'INTL';
     let setup = await client.get('setup');
-    console.log("🚀 ~ file: index.js ~ line 111 ~ Service ~ feeComputation ~ setup", setup)
 
     setup = JSON.parse(setup);
 

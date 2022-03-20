@@ -9,6 +9,7 @@ const logger = Logger.createLogger({ label: 'LANNISTER' });
 const client = redis.createClient({
   url: config.DATABASE_URL,
   socket: {
+    tls: true,
     rejectUnauthorized: false
   },
 });
@@ -17,11 +18,11 @@ const client = redis.createClient({
   await client.connect();
 })();
 
+client.on('error', (error) => {
+  logger.error('Redis Error', error);
+});
 client.on('connect', () => {
   logger.info('Redis connected successfully');
-})
-  .on('error', (error) => {
-    logger.error(error);
-  });
+});
 
 export default client;
