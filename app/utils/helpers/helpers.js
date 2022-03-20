@@ -1,6 +1,5 @@
 import genericError from '../error/generic';
 import constants from '../constants';
-import DBError from '../error/db.error';
 
 const { serverError } = genericError;
 const { FAIL } = constants;

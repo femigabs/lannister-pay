@@ -1,4 +1,4 @@
-import { Helper, ValidationHelper } from './helpers';
+import { Helper } from './helpers';
 import constants from './constants';
 import genericErrors from './error/generic';
 import ApiError from './error/api.error';
@@ -12,5 +12,4 @@ export {
   ApiError,
   ModuleError,
   DBError,
-  ValidationHelper,
 };
