@@ -1,6 +1,6 @@
 # lannister-pay
 
-A SWAPI appplication that provides API endpoints for listing names of Star Wars movies along with their opening crawls and comment counts, adding and listing anonymous comments for a movie, and getting the character list for a movie.
+A lannister pay project to configure fee and compute fee price based on configuration
 
 ---
 
